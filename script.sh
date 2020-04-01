@@ -7,7 +7,7 @@ for i in 1 2 4 8 16
 do
 echo $i hilos
 echo $i hilos >> results.txt
-for j in $(seq 3 15)
+for j in 3 5 7 9 11 13 15
 do
 ./output1 $k "kr"$j"hi"$i"im"$k $j $i >> results.txt
 done
