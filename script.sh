@@ -9,7 +9,7 @@ echo $i hilos
 echo $i hilos >> results.txt
 for j in $(seq 3 15)
 do
-./output1 $k kr$jhi$iim$k $j $i >> results.txt
+./output1 $k "kr"$j"hi"$i"im"$k $j $i >> results.txt
 done
 done
 done
