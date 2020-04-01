@@ -17,7 +17,7 @@ int lim = (filter - 1)/2;
 
 #define e  2.7182818284
 #define sigma 3
-#define THREADS 12
+int THREADS;
 
 float matrixGauss()
 {
@@ -75,17 +75,18 @@ void *convolucion(void *arg)
   return 0;
 }
 
-int main() 
+int main(int argc, char *argv[]) 
 {
- 
+  timespec ts1,ts2;
+  clock_gettime(CLOCK_REALTIME, &ts1);
+  char *entrada = argv[1];
+  char *salida = argv[2];
+  filter = atoi(argv[3]);
+  THREADS = atoi(argv[4]);
+  
+  cout << THREADS <<"\n";
   matrixGauss();
-  for(int i = 0; i < filter; i++){
-      for(int j = 0; j < filter; j++){
-          printf("   %0.8f",gauss[i][j]);
-      }
-      printf("\n");
-  }
-  image = imread("pasisaje.jpeg" , CV_LOAD_IMAGE_COLOR);
+  image = imread(entrada , CV_LOAD_IMAGE_COLOR);
   blurImage = image.clone();
 
   if(! image.data ) {
@@ -106,10 +107,9 @@ int main()
         pthread_join(thread[i], (void **)&retval);
     }
   
-  imwrite("blur.png", blurImage);
+  imwrite(salida, blurImage);
   free(gauss);
-  cv::namedWindow( "Display window", cv::WINDOW_AUTOSIZE );
-  cv::imshow( "Display window", blurImage );
-  cv::waitKey(0);
+  clock_gettime(CLOCK_REALTIME, &ts2);
+  printf("%ld.%09ld\n", (long)(ts2.tv_sec - ts1.tv_sec), abs(ts2.tv_nsec - ts1.tv_nsec));
   return 0;
 }
