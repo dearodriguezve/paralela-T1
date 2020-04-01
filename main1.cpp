@@ -84,7 +84,6 @@ int main(int argc, char *argv[])
   filter = atoi(argv[3]);
   THREADS = atoi(argv[4]);
   
-  cout << THREADS <<"\n";
   matrixGauss();
   image = imread(entrada , CV_LOAD_IMAGE_COLOR);
   blurImage = image.clone();
