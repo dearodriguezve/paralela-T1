@@ -11,7 +11,7 @@ for j in 3 5 7 9 11 13 15
 do
 for x in $(seq 0 10)
 do
-./output1 $k "kr"$j"hi"$i"im"$k $j $i >> results.txt
+./output $k "kr"$j"hi"$i"im"$k $j $i >> results.txt
 done
 echo "" >> results.txt
 done

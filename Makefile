@@ -1,2 +1,2 @@
 all:
-	g++ main1.cpp -fpermissive -lpthread  -o output1 `pkg-config --cflags --libs opencv
+	g++ blur-effect.cpp -fpermissive -lpthread  -o output `pkg-config --cflags --libs opencv`
