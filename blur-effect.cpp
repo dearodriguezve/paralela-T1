@@ -83,7 +83,7 @@ int main(int argc, char *argv[])
   char *entrada = argv[1];
   char *salida = argv[2];
   filter = atoi(argv[3]);
-  lim = (filter - 1)/2
+  lim = (filter - 1)/2;
   THREADS = atoi(argv[4]);
   
   matrixGauss();
