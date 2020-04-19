@@ -5,6 +5,7 @@
 #include <math.h>
 #include <stdio.h>
 #include <pthread.h>
+#include <omp.h>
 
 using namespace std;
 using namespace cv;
