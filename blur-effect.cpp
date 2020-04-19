@@ -45,12 +45,14 @@ float matrixGauss()
   }    
 }
 
-void *convolucion(void *arg)
+void convolucion(int ID)
 {
-  int threadId = *(int *)arg;
+  // int threadId = *(int *)arg;
   int columns = image.cols;
   int rows = image.rows;
-  for(int y = threadId*(rows/THREADS); y < (((threadId+1)*(rows/THREADS))); y++){        
+
+  for(int y = (ID)*(rows/THREADS); y < ((ID + 1)*(rows/THREADS)); y++){     
+  //for(int y = threadId*(rows/THREADS); y < (((threadId+1)*(rows/THREADS))); y++){        
     for (int x = 0; x < columns; x++){
       int val0= 0;
       int val1= 0;
@@ -96,6 +98,13 @@ int main(int argc, char *argv[])
     return -1;
   }
   
+  #pragma omp parallel num_threads(THREADS)
+  {
+    int ID = omp_get_thread_num();
+    convolucion(ID);
+  }
+  
+  /*
   int threadId[THREADS], i, *retval;
   pthread_t thread[THREADS];
 
@@ -108,7 +117,8 @@ int main(int argc, char *argv[])
   for(i = 0; i < THREADS; i++){
     pthread_join(thread[i], (void **)&retval);
   }
-  
+  */
+
   imwrite(salida, blurImage);
   free(gauss);
   clock_gettime(CLOCK_REALTIME, &ts2);
