@@ -76,7 +76,7 @@ void convolucion(int ID)
       blurImage.at<Vec3b>(y, x).val[2] = val2;
     }  
   }
-  return 0;
+  //return 0;
 }
 
 int main(int argc, char *argv[]) 
