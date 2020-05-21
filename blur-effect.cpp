@@ -33,8 +33,8 @@ float matrixGauss()
   float s = pow(sigma, 2);
   for(int i = -filter/2; i < filter/2; i++){
     for(int j = -filter/2; j < filter/2; j++){
-    gauss[i+int(filter/2)][j+int(filter/2)] = (1/(2*M_PI*s))*(pow(e,(-(i*i+j*j)/(2*s))));
-    sum += gauss[i+int(filter/2)][j+int(filter/2)];
+      gauss[i+int(filter/2)][j+int(filter/2)] = (1/(2*M_PI*s))*(pow(e,(-(i*i+j*j)/(2*s))));
+      sum += gauss[i+int(filter/2)][j+int(filter/2)];
     }
   }
   
